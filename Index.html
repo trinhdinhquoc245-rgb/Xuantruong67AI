@@ -98,8 +98,17 @@ async function signIn() {
     password
   });
 
-  document.getElementById("msg").innerText =
-    error ? error.message : "Đăng nhập thành công.";
+  if(error){
+  document.getElementById("msg").innerText = error.message;
+}else{
+  document.getElementById("msg").innerHTML =
+  `
+  <h3>Dashboard XT67 AI</h3>
+  <p>Đăng nhập thành công</p>
+  <p>${email}</p>
+  <button onclick="logout()">Đăng xuất</button>
+  `;
+  }
 }
 </script>
 
