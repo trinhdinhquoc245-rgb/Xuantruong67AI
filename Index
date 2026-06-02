@@ -18,6 +18,11 @@ async function signIn() {
 <p>${email}</p>
 <button onclick="logout()">Đăng xuất</button>
 `;
+<h3>Dashboard XT67 AI</h3>
+<p>Đăng nhập thành công</p>
+<p>${email}</p>
+<button onclick="logout()">Đăng xuất</button>
+`;
   }
 }
 async function logout(){
