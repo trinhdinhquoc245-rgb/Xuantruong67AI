@@ -1,4 +1,4 @@
-}
+ }
 
 async function signIn() {
   const email = document.getElementById("email").value;
@@ -12,13 +12,12 @@ async function signIn() {
   if(error){
   document.getElementById("msg").innerText = error.message;
 }else{
-  document.getElementById("msg").innerHTML =
-  `
-  <h3>Dashboard XT67 AI</h3>
-  <p>Đăng nhập thành công</p>
-  <p>${email}</p>
-  <button onclick="logout()">Đăng xuất</button>
-  `;
+  document.getElementById("msg").innerHTML = `
+<h3>Dashboard XT67 AI</h3>
+<p>Đăng nhập thành công</p>
+<p>${email}</p>
+<button onclick="logout()">Đăng xuất</button>
+`;
   }
 }
 async function logout(){
