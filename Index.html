@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>XT67 AI</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 body{
 font-family:Arial,sans-serif;
@@ -30,6 +32,7 @@ padding:10px;
 margin:8px 0;
 border:none;
 border-radius:8px;
+box-sizing:border-box;
 }
 
 button{
@@ -40,6 +43,12 @@ color:white;
 border:none;
 border-radius:8px;
 margin-top:10px;
+cursor:pointer;
+}
+
+#msg{
+margin-top:15px;
+font-size:14px;
 }
 </style>
 </head>
@@ -49,15 +58,50 @@ margin-top:10px;
 <div class="card">
 <h2>XT67 AI</h2>
 
-<input type="email" placeholder="Email">
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Mật khẩu">
 
-<input type="password" placeholder="Mật khẩu">
+<button onclick="signUp()">Đăng ký</button>
+<button onclick="signIn()">Đăng nhập</button>
 
-<button>Đăng nhập</button>
-
-<button>Đăng ký</button>
-
+<div id="msg"></div>
 </div>
+
+<script>
+const SUPABASE_URL = "https://kjpuxtpmgjzenafwhgkh.supabase.co/rest/v1/";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqcHV4dHBtZ2p6ZW5hZndoZ2toIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMzQ4NTMsImV4cCI6MjA5NTkxMDg1M30.zSb1SLY3zQAPat8czzl7im_WyNFRZanocSIpojxzbrY";
+
+const client = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function signUp() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await client.auth.signUp({
+    email,
+    password
+  });
+
+  document.getElementById("msg").innerText =
+    error ? error.message : "Đăng ký thành công, kiểm tra email.";
+}
+
+async function signIn() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await client.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  document.getElementById("msg").innerText =
+    error ? error.message : "Đăng nhập thành công.";
+}
+</script>
 
 </body>
 </html>
